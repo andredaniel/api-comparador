@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ConvenioController extends Controller
 {
     public function all()
     {
-        return response(\File::get(storage_path("app/public/simulador/convenios.json")));
+        $json = File::get(storage_path("app/public/simulador/convenios.json"));
+        return response(json_decode($json));
     }
 }
